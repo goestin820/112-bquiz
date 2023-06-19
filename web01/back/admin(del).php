@@ -1,31 +1,31 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-    <p class="t cent botli"><?= $News->header; ?></p>
+    <p class="t cent botli"><?= $Admin->header; ?></p>
     <form method="post" action="./api/update.php">
         <table width="100%">
             <tbody>
                 <tr class="yel">
-
-                    <td width="68%">替代文字</td>
-                    <td width="7%">顯示</td>
-                    <td width="7%">刪除</td>
-
+                    <td width="45%">帳號</td>
+                    <td width="45%">密碼</td>
+                    <td width="10%">刪除</td>
                 </tr>
                 <?php
 
-                $rows = $News->all();
+                $rows = $Admin->all();
                 foreach ($rows as $row) {
                 ?>
                     <tr>
                         <td>
-                            <textarea name="text" style='width:95%;height:60px'><?= $row['text']; ?></textarea>
+                            <input type="text" name="acc[<?= $row['id']; ?>]" value="<?= $row['acc']; ?>" style='width:95%'>
                         </td>
                         <td>
-                            <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? 'checked' : ''; ?>>
+                            <input type="password" name="pw[<?= $row['id']; ?>]" value="<?= $row['pw']; ?>">
                         </td>
                         <td>
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         </td>
+                        <td>
 
+                        </td>
                     </tr>
                 <?php
                 }
@@ -35,8 +35,9 @@
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
-                    <input type="hidden" name="table" value='news'>
-                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/news.php')" value="新增最新消息資料"></td>
+                    <input type="hidden" name="table" value='admin'>
+                    <!-- <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/admin.php')" value="新增管理員"></td> -->
+                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/add_form.php?table=admin')" value="新增管理員"></td>
                     <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
                 </tr>
             </tbody>

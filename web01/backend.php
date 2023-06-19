@@ -1,4 +1,4 @@
-﻿<?php include_once "base.php";?>
+﻿<?php include_once "base.php"; ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0068)?do=admin&redo=title -->
@@ -99,14 +99,17 @@
 
 				<!-- include "./back/title.php"  -->
 
-				<?php $do = $_GET['do'] ?? 'title'; //使用三元運算式來取得網址的GET參數
+				<?php
 
-				$file = "./back/" . $do . ".php"; //建立檔案路徑及檔名
+				$do = $_GET['do'] ?? 'title'; //使用三元運算式來取得網址的GET參數
+				$table = ucfirst($do);
+
+				$$table->list();
+				// $file = "./back/" . $do . ".php"; //建立檔案路徑及檔名
 
 
 
 				// $header=['title'=>'網站標題管理'];
-
 
 				// switch ($do) {
 				// 	case 'title':
@@ -120,14 +123,12 @@
 				// 		break;
 				// }
 
-				
-
 				//判斷檔案是否存在,存在則載入,不存在則載入main.php
-				if (file_exists($file)) {
-					include $file;
-				} else {
-					include "./back/title.php";
-				}
+				// if (file_exists($file)) {
+				// 	include $file;
+				// } else {
+				// 	include "./back/title.php";
+				// }
 
 				?>
 				<!-- <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
