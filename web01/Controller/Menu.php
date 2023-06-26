@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once "DB.php";
 
 class Menu extends DB
@@ -20,10 +20,17 @@ class Menu extends DB
                     <tr>
                         <td>選單連結網址：</td>
                         <td><input type='text' name='href'></td>
-                    </tr> ","./api/add.php");
+                    </tr> ", "./api/add.php");
     }
 
-    public function list(){
-        $this->backend("./view/menu.php");
-    }  
+    public function list()
+    {
+        // $this->backend("./view/menu.php");
+        $rows = $this->all(['main_id' => 0]);
+        foreach ($rows as $idx => $row) {
+            $row['subs'] = $this->count(['main_id' => $row['id']]);
+            $rows[$idx] = $row;
+        }
+        $this->view("./view/menu.php", ['rows' => $rows]);
+    }
 }

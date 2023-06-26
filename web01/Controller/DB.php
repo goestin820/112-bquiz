@@ -2,12 +2,14 @@
 
 class DB
 {
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=bquiz01";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db77";
     protected $table;
     protected $user = "root";
     protected $pw = "";
     protected $pdo;
     protected $add_header = '';
+    protected $links;
+
     /**
      * 建構式
      * 在實例化時，需要帶入一個資料表名稱，並會在實例化時，建立起對資料庫的連線
@@ -222,12 +224,17 @@ class DB
         return $this->pdo->query($sql)->fetchColumn();
     }
 
+    function view($path, $arg = [])
+    {
+        extract($arg);
+        include $path;
+    }
 
     /**
      * 彈出視窗的共同模板
      */
     // public function modal($slot)
-    public function modal($slot,$action)
+    public function modal($slot, $action)
     {
 ?>
         <h3><?= $this->add_header; ?></h3>
@@ -243,11 +250,49 @@ class DB
                 </tr>
             </table>
         </form>
+
     <?php
     }
 
+    function paginate($div, $arg = null)
+    {
+        $total = $this->count($arg);
+        $pages = ceil($total / $div);
+        $now = $_GET['page'] ?? 1;
+        $start = ($now - 1) * $div;
+        $rows = $this->all($arg, " limit $start,$div");
+        $this->links = [
+            'total' => $total,
+            'pages' => $pages,
+            'now' => $now,
+            'start' => $start,
+        ];
+        return $rows;
+    }
+
+    function links(){
+        if(($this->links['now']-1)>=1){
+            $prev=$this->links['now']-1;
+           echo "<a href='?do=$this->table&page=$prev'> &lt; </a>";
+
+        }
+        
+        for($i=1;$i<=$this->links['pages'];$i++){
+            $fontsize=($i==$this->links['now'])?'24px':'16px';
+            echo "<a href='?do=$this->table&page=$i' style='font-size:$fontsize'> $i </a>";
+        }   
+
+        if(($this->links['now']+1)<=$this->links['pages']){
+                    $next=$this->links['now']+1;
+                   echo "<a href='?do=$this->table&page=$next'> &gt; </a>";
+                }
+     
+    }
+
+
+
     /**
-     * 後台管理畫面的模板
+     * 後台管理畫面的模板--已刪除不用
      */
     function backend($slot)
     {
@@ -260,5 +305,6 @@ class DB
         </div>
 <?php
     }
+
 }
 //<------DB Class結尾------>

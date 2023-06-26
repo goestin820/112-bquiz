@@ -14,6 +14,7 @@ switch($table){
     case 'news':
     case 'ad':
         $data['text']=$_POST['text'];
+    break;
     case "admin":
         $data['acc']=$_POST['acc'];
         $data['pw']=$_POST['pw'];

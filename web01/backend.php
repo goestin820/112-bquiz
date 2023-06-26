@@ -22,8 +22,10 @@
 	</div>
 	<!-- <iframe style="display:none;" name="back" id="back"></iframe> 將iframe標籤刪除-->
 	<div id="main">
-		<a title="" href="?">
-			<div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div><!--標題-->
+		<!-- <a title="" href="?"> -->
+		<a title="<?=$Title->title;?>" href="?">
+			<!-- <div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div>標題 -->
+			<div class="ti" style="background:url('./upload/<?=$Title->img;?>'); background-size:cover;"></div>
 		</a>
 		<div id="ms">
 			<div id="lf" style="float:left;">
@@ -32,60 +34,49 @@
 					<span class="t botli">後台管理選單</span>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="./Management page_files/Management page.htm"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
-						<div class="mainmu">網站標題管理 </div>
+						<div class="mainmu">網站標題管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=ad"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=ad">
-						<div class="mainmu">
-							動態文字廣告管理 </div>
+						<div class="mainmu">動態文字廣告管理</div>
+							
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=mvim"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=mvim">
-
-						<div class="mainmu">
-							動畫圖片管理 </div>
+						<div class="mainmu">動畫圖片管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=image"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=image">
-
-						<div class="mainmu">
-							校園映象資料管理 </div>
+						<div class="mainmu">校園映象資料管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=total"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=total">
-
-						<div class="mainmu">
-							進站總人數管理 </div>
+						<div class="mainmu">進站總人數管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=bottom"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=bottom">
-
-						<div class="mainmu">
-							頁尾版權資料管理 </div>
+						<div class="mainmu">頁尾版權資料管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=news"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=news">
-
-						<div class="mainmu">
-							最新消息資料管理 </div>
+						<div class="mainmu">最新消息資料管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=admin"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin">
-
-						<div class="mainmu">
-							管理者帳號管理 </div>
+						<div class="mainmu">管理者帳號管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=menu"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=menu">
-
-						<div class="mainmu">
-							選單管理 </div>
+						<div class="mainmu">選單管理</div>
 					</a>
 				</div>
+				
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-					<span class="t">進站總人數 :<?= $Total->find(1)['total']; ?> </span>
+					<!-- <span class="t">進站總人數 :<= $Total->find(1)['total']; ?> </span> -->
+					<span class="t">進站總人數 :<?=$Total->show();?> </span>
 				</div>
 			</div>
+			
 			<div class="di" style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
 				<!--正中央-->
 				<table width="100%">
@@ -178,7 +169,8 @@
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
 			<span class="t" style="line-height:123px;">
-				<?= $Bottom->find(1)['bottom']; ?>
+				<!-- <= $Bottom->find(1)['bottom']; ?> -->
+				<?=$Bottom->show();?>		
 			</span>
 		</div>
 	</div>

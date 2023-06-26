@@ -1,3 +1,17 @@
+<style>
+    a{
+        text-decoration: none;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+</style>
+
+<!-- 新增div+p+form -->
+<div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
+    <p class="t cent botli"><?=$this->header;?>管理</p>
+    <form method="post" action="./api/update.php">
+
 <table width="100%">
             <tbody>
                 <tr class="yel">
@@ -6,11 +20,13 @@
                     <td width="7%">刪除</td>
                     <td></td>
                 </tr>
-            <?php
 
-                $rows=$this->all();
+            <?php
+                // $rows=$this->all();
+                $rows=$this->paginate(3);
                 foreach($rows as $row){
             ?>
+
                 <tr>
                     <td>
                         <img src="./upload/<?=$row['img'];?>" style="width:120px;height:80px">
@@ -32,6 +48,11 @@
             ?>                
             </tbody>
         </table>
+
+        <div style="text-align:center">
+            <?=$this->links();?>
+        </div>
+
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
@@ -41,3 +62,6 @@
                 </tr>
             </tbody>
         </table>
+
+        </form>
+</div>        

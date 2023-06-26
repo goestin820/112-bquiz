@@ -9,4 +9,13 @@ class Bottom extends DB
     {
         parent::__construct('bottom');
     }
+
+    function show(){
+        return $this->find(1)['bottom'];
+        //return $this->all(' limit 1')[0]['bottom'];
+    }
+
+    function list(){
+        return $this->view('./view/bottom.php');
+    }
 }

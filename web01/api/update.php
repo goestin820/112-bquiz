@@ -56,3 +56,5 @@ foreach ($_POST['text'] as $id => $text) {
 }
 
 to("../backend.php?do=$table");
+
+?>
