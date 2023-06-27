@@ -38,8 +38,7 @@
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=ad"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=ad">
-						<div class="mainmu">動態文字廣告管理</div>
-							
+						<div class="mainmu">動態文字廣告管理</div>				
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=mvim"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=mvim">

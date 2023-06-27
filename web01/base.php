@@ -48,7 +48,7 @@ function to($url)
  */
 function q($sql)
 {
-    $pdo = new PDO("mysql:host=localhost;charset=utf8;dbname=bquiz01", 'root', '');
+    $pdo = new PDO("mysql:host=localhost;charset=utf8;dbname=db77", 'root', '');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
 
