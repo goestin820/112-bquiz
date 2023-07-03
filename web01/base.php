@@ -9,8 +9,11 @@
 // include "./Controller/Title.php";
 // include "./Controller/Total.php";
 
+session_start();
+
 //用PHP函式$_SERVER['DOCUMENT_ROOT']，取出此專案資料夾的絕對路徑根目錄
-$BASEDIR=$_SERVER['DOCUMENT_ROOT'];
+// $BASEDIR=$_SERVER['DOCUMENT_ROOT'];
+$BASEDIR=__DIR__;
 // echo $BASEDIR;  
 //顯示結果應該類似為 E:\112-bquiz\web01
 

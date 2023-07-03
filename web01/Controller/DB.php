@@ -8,6 +8,7 @@ class DB
     protected $pw = "";
     protected $pdo;
     protected $add_header = '';
+    protected $header='';
     protected $links;
 
     /**
@@ -226,6 +227,7 @@ class DB
 
     function view($path, $arg = [])
     {
+        //extract()函式可以把key-value的陣列拆解成$key=value的型式
         extract($arg);
         include $path;
     }
@@ -236,11 +238,12 @@ class DB
     // public function modal($slot)
     public function modal($slot, $action)
     {
-?>
+    ?>
         <h3><?= $this->add_header; ?></h3>
         <hr>
         <!-- <form action="./api/add.php" method="post" enctype="multipart/form-data"> -->
-        <form action="./api/add.php" method="post" enctype="multipart/form-data">
+        <!-- <form action="./api/add.php" method="post" enctype="multipart/form-data"> -->
+        <form action="<?=$action;?>" method="post" enctype="multipart/form-data">
             <table>
                 <?= $slot; ?>
                 <tr>
@@ -254,13 +257,20 @@ class DB
     <?php
     }
 
+    /**
+     * 分頁功能，此函式主要在根據參數來回傳分頁的資料
+     * $div:每頁的資料數
+     * $arg:用在SQL語法中的指令字串或條件陣列
+     */
     function paginate($div, $arg = null)
     {
-        $total = $this->count($arg);
-        $pages = ceil($total / $div);
-        $now = $_GET['page'] ?? 1;
-        $start = ($now - 1) * $div;
-        $rows = $this->all($arg, " limit $start,$div");
+        $total = $this->count($arg);   //計算需要分頁的資料總筆數
+        $pages = ceil($total / $div);  //計算總頁數
+        $now = $_GET['page'] ?? 1;     //使用GET來取得當前頁面,預設為1
+        $start = ($now - 1) * $div;     //計算要從那筆資料開始取
+        $rows = $this->all($arg, " limit $start,$div");  //將條件代入all()函式來取出資料
+        
+        //將以上計算出的相關參數記入類別中的links成員
         $this->links = [
             'total' => $total,
             'pages' => $pages,
@@ -270,23 +280,29 @@ class DB
         return $rows;
     }
 
+    /**
+     * links()方法一定要在paginate()執行後才會有效果，
+     * 用途是在頁面上秀出分頁的連結
+     * 重要的參數是利用$this->links中的資料來計算各個連結的功能
+     */
     function links(){
+        //判斷是否還有前一頁，然後顯示前一頁的連結
         if(($this->links['now']-1)>=1){
             $prev=$this->links['now']-1;
            echo "<a href='?do=$this->table&page=$prev'> &lt; </a>";
-
         }
         
+        //根據總頁數來顯示所有頁面的連結
         for($i=1;$i<=$this->links['pages'];$i++){
             $fontsize=($i==$this->links['now'])?'24px':'16px';
             echo "<a href='?do=$this->table&page=$i' style='font-size:$fontsize'> $i </a>";
         }   
 
+        //判斷是否還有下一頁，然後顯示下一頁的連結
         if(($this->links['now']+1)<=$this->links['pages']){
                     $next=$this->links['now']+1;
                    echo "<a href='?do=$this->table&page=$next'> &gt; </a>";
                 }
-     
     }
 
 
@@ -297,13 +313,13 @@ class DB
     function backend($slot)
     {
     ?>
-        <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
-            <p class="t cent botli"><?= $this->header; ?>管理</p>
+        <!-- <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
+            <p class="t cent botli"><= $this->header; ?>管理</p>
             <form method="post" action="./api/update.php">
-                <?php include $slot; ?>
+                <php include $slot; >
             </form>
-        </div>
-<?php
+        </div> -->
+    <?php
     }
 
 }

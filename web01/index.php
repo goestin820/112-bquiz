@@ -21,22 +21,51 @@
 	</div>
 	<!-- <iframe style="display:none;" name="back" id="back"></iframe> -->
 	<div id="main">
-		<a title="" href="./home_files/home.htm">
-			<div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div><!--標題-->
+		<!-- <a title="" href="./home_files/home.htm"> -->
+		<!-- <a title="$Title->find(['sh'=>1])['text']" href="index.php"> -->
+		<a title="<?=$Title->title;?>" href="index.php">
+			<!-- <div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div>標題 -->
+			<div class="ti" style="background:url('./upload/<?=$Title->img;?>'); background-size:cover;"></div><!--標題-->
 		</a>
 		<div id="ms">
 			<div id="lf" style="float:left;">
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+
+					<?php
+					$rows=$Menu->show();
+					foreach($rows as $row){
+
+						echo "<div class='mainmu'>";
+						echo 	"<a href='{$row['href']}'>";
+						echo 		$row['text'];
+						echo 	"</a>";
+						if(isset($row['subs'])){
+						echo 	"<div class='mw'>"; 
+							foreach($row['subs'] as $sub){
+								echo "<div class='mainmu2'>";
+								echo "<a href='{$sub['href']}'>";
+								echo $sub['text'];
+								echo "</a>";
+								echo "</div>";
+							}
+						echo 	"</div>";
+						}
+						echo "</div>";
+					}
+					?>
+
 				</div>
+
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">
 						進站總人數 :
 						<?=
 						// $total = new DB('total');
 						// echo $total->find(1)['total'];
-						$Total->find(1)['total'];
+						// $Total->find(1)['total'];
+						$Total->show();
 						?>
 					</span>
 				</div>
@@ -57,8 +86,9 @@
 			}
 			?>
 
-			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
-			<script>
+			<!-- 此段程式碼已經整合至main.php，故可以刪除 -->
+			<!-- <div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div> -->
+			<!-- <script>
 				$(".sswww").hover(
 					function() {
 						$("#alt").html("" + $(this).children(".all").html() + "").css({
@@ -72,30 +102,51 @@
 						$("#alt").hide()
 					}
 				)
-			</script>
+			</script> -->
 
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
-				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=admin&#39;)">管理登入</button>
+				<!-- <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=admin&#39;)">管理登入</button> -->
+				<!-- <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button> -->
+				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">
+					<?=(isset($_SESSION['login'])?'返回管理':'管理登入');?>
+				</button>
+
 				<div style="width:89%; height:480px;" class="dbor">
-					<span class="t botli">校園映象區</span>
+					<span class="t botli">校園映像區</span>
+					<div class="cent" onclick="pp(1)">
+						<img src="./icon/up.jpg" alt="">
+					</div>
+
+					<?php
+						$Image->show();
+					?>
+					<div class="cent" onclick="pp(2)">
+						<img src="./icon/dn.jpg" alt="">
+					</div>
+
 					<script>
 						var nowpage = 0,
-							num = 0;
+							num = <?=$Image->num();?>;
 
 						function pp(x) {
 							var s, t;
+
 							if (x == 1 && nowpage - 1 >= 0) {
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+
+							if (x == 2 && nowpage  < num - 3) { //修正原程式的錯誤
 								nowpage++;
 							}
+
 							$(".im").hide()
+
 							for (s = 0; s <= 2; s++) {
 								t = s * 1 + nowpage * 1;
 								$("#ssaa" + t).show()
 							}
+
 						}
 						pp(1)
 					</script>
@@ -109,7 +160,8 @@
 				<?=
 				// $bottom=new DB('bottom');
 				// echo $bottom->find(1)['bottom'];
-				$Bottom->find(1)['bottom'];
+				// $Bottom->find(1)['bottom'];
+				$Bottom->show();		
 				?>
 			</span>
 		</div>

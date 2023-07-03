@@ -46,7 +46,7 @@
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=image"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=image">
-						<div class="mainmu">校園映象資料管理</div>
+						<div class="mainmu">校園映像資料管理</div>
 					</a>
 					<!-- <a style="color:#000; font-size:13px; text-decoration:none;" href="?do=admin&redo=total"> -->
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=total">
@@ -82,7 +82,9 @@
 					<tbody>
 						<tr>
 							<td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
-							<td><button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
+							<!-- <td><button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td> -->
+							<!-- <td><button onclick="location.replace('index.php?do=login')" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>							 -->
+							<td><button onclick="location.replace('index.php?do=login')" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -119,7 +121,6 @@
 				// } else {
 				// 	include "./back/title.php";
 				// }
-
 				?>
 				<!-- <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
 					<p class="t cent botli">網站標題管理</p>
@@ -148,8 +149,10 @@
 				</div> -->
 			</div>
 
-			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
-			<script>
+			<!-- 這段程式碼前台最新消息區，請整段剪下貼上至/front/news.php？ 不確定-->
+			<!-- 此段程式碼已經整合至main.php，故可以刪除 -->
+			<!-- <div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div> -->
+			<!-- <script>
 				$(".sswww").hover(
 					function() {
 						$("#alt").html("" + $(this).children(".all").html() + "").css({
@@ -163,7 +166,7 @@
 						$("#alt").hide()
 					}
 				)
-			</script>
+			</script> -->
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">

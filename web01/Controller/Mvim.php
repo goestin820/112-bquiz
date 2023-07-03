@@ -33,4 +33,16 @@ class Mvim extends DB
                       </tr>
                     ","./api/update_img.php");
     }
+
+    /**
+     * 前台頁面顯示用的方法
+     * 在這裏是在script區顯示javascript語法
+     * 把要顯示的圖片路徑字串放到陣列中
+     */
+    function show(){
+        $rows=$this->all(['sh'=>1]);
+        foreach($rows as $row){
+            echo "lin.push('./upload/{$row['img']}');";
+        }
+    }
 }

@@ -6,7 +6,7 @@
                 <tr class="yel">
                     <td width="50%">進站總人數：</td>
                     <td width="50%">
-                        <input type="text" name="total" value="<?=$this->find(1)['total'];?>">
+                        <input type="number" name="total" value="<?=$this->find(1)['total'];?>">
                     </td>
                 </tr>
                
@@ -17,7 +17,10 @@
                 <tr>
                     <input type="hidden" name="table" value='<?=$this->table;?>'>
                     <td width="200px"></td>
-                    <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
+                    <td class="cent">
+                        <input type="submit" value="修改確定">
+                        <input type="reset" value="重置">
+                    </td>
                 </tr>
             </tbody>
         </table>

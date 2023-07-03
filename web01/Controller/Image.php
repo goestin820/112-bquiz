@@ -32,4 +32,25 @@ class Image extends DB
     public function list(){
         $this->backend("./view/image.php");
     }
+
+     /**
+     * 前台頁面顯示用的方法
+     * 在這裏是顯示全部設定為顯示的圖片並加上class及id
+     */
+    function show(){
+        $rows=$this->all(['sh'=>1]);
+        foreach($rows as $idx => $row){
+            echo "<div class='im' id='ssaa{$idx}'>";
+            echo "<img src='./upload/{$row['img']}'>";
+            echo "</div>";
+
+        }
+    }
+
+    /**
+     * 計算並回傳要顯示的圖片數量
+     */
+    function num(){
+        return $this->count(['sh'=>1]);
+    }
 }
