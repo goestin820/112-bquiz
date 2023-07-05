@@ -38,5 +38,6 @@ $News=new News;
 $Title=new Title;
 $Total=new Total;
 
+$Total->online();
 
 ?>

@@ -2,10 +2,10 @@
 
 class DB
 {
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db77";
     protected $table;
-    protected $user = "root";
-    protected $pw = "";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db77";
+    // protected $user = "root";
+    // protected $pw = "";
     protected $pdo;
     protected $add_header = '';
     protected $header='';
@@ -22,8 +22,9 @@ class DB
 
     function __construct($table)
     {
-        $this->pdo = new PDO($this->dsn, $this->user, $this->pw);
+        // $this->pdo = new PDO($this->dsn, $this->user, $this->pw);
         $this->table = $table;
+        $this->pdo=new PDO($this->dsn,'root','');
     }
 
     /**
@@ -37,6 +38,7 @@ class DB
     function all(...$arg)
     {
         $sql = "select * from $this->table ";
+        // $sql=$this->sql($sql,...$arg);
 
         if (!empty($arg)) {
             if (is_array($arg[0])) {

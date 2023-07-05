@@ -2,7 +2,8 @@
 include_once "DB.php";
 
 class Ad extends DB{
-
+    public static $name='動態廣告文字';
+    protected static $str='hello';
     function __construct()
     {
         parent::__construct('ad');

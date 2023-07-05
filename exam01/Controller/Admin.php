@@ -16,4 +16,17 @@ class Admin extends DB{
         ];
      return $this->view('./view/backend/admin.php',$view);
     }
+
+    function login($user){
+        if(!empty($user)){
+            $chk=$this->count($user);
+            if($chk){
+                to("backend.php");
+            }else{
+            ?>
+            <script>alert("帳號或密碼輸入錯誤!")</script>
+            <?php
+            }
+        }
+    }
 }

@@ -18,4 +18,42 @@ class News extends DB{
         ];
      return $this->view('./view/backend/news.php',$view);
     }
+
+    function more(){
+        if($this->count(['sh'=>1])>5){
+            echo "<a href='?do=news' style='float:right'>";
+            echo "More...";
+            echo "</a>";
+        }
+    }
+
+    function moreNews(){
+        $rows=$this->paginate(5,['sh'=>1]);
+        $start=$this->links['start']+1;
+        echo "<ol start='$start'>";
+        foreach($rows as $row){
+            echo "<li>";
+            echo mb_substr($row['text'],0,20);
+            echo "<span class='all' style='display:none'>";
+            echo $row['text'];
+            echo "</span>";
+            echo "</li>";
+        }
+        echo "</ol>";
+        echo "<div class='cent'>";
+        echo $this->links();
+        echo "</div>";
+    }
+
+    function show(){
+        $rows=$this->all(['sh'=>1]," limit 5");
+        foreach($rows as $row){
+            echo "<li>";
+            echo mb_substr($row['text'],0,20);
+            echo "<span class='all' style='display:none'>";
+            echo $row['text'];
+            echo "</span>";
+            echo "</li>";
+        }
+    }
 }

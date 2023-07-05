@@ -78,7 +78,10 @@
                     <tr>
                         <td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a>
                         </td>
-                        <td><button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
+                        <td>
+                            <!-- <button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)" style="width:99%; margin-right:2px; height:50px;">管理登出</button> -->
+                            <button onclick="location.replace('index.php?do=login')" style="width:99%; margin-right:2px; height:50px;">管理登出</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -91,7 +94,7 @@
             ?>
         </div>
         <div style="clear:both;"></div>
-        
+
         <!-- 頁尾區 -->
         <div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
             <span class="t" style="line-height:123px;"><?= $Bottom->show(); ?></span>

@@ -75,6 +75,8 @@ body
 	line-height:30px;
 	padding:2px 10px 2px 10px;
 	margin:7px 1px 7px 1px;
+	/* 新增height高度，因為line-height為30px */
+	height:30px; 
 }
 .mainmu:hover
 {
@@ -158,4 +160,13 @@ input:focus,button:focus
 	color:#0CF;
 	cursor:pointer;
 	text-decoration:none;
+}
+
+/* 新增.mw CSS */
+.mw{
+	display:none;
+	margin-left:100px;
+	position: absolute;
+	top:12px;
+	width:120px;
 }
