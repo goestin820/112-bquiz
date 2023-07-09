@@ -5,7 +5,8 @@
     <!-- 手動增加更多最新消息 -->
     <h3 class="cent">更多最新消息</h3>
     <hr>
-    <?= $News->moreNews(); ?>
+        <!-- 呼叫News物件的moreNews方法 -->
+        <?= $News->moreNews(); ?>
 
 <!-- <div style="text-align:center;">
     <a class="bl" style="font-size:30px;" href="?do=meg&p=0">&lt;&nbsp;</a>

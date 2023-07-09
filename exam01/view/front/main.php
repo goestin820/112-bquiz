@@ -30,6 +30,7 @@
                 now = 0;
         }
 
+        // 呼叫ww函式
         ww();
     </script>
     <!-- 移至正中央區塊 -->
@@ -40,6 +41,10 @@
     </div> -->
     <div style="width:95%; padding:2px; height:190px; margin-top:10px; padding:5px 10px 5px 10px; border:#0C3 dashed 3px; position:relative;">
         <span class="t botli">最新消息區
+
+            <!-- 呼叫News物件的more方法 -->
+            <?=$News->more();?>
+        
         </span>
         <ul class="ssaa" style="list-style-type:decimal;">
 

@@ -46,7 +46,6 @@ foreach($rows as $id => $row){
 
         $$db->save($data);
     }
-
 }
 
 

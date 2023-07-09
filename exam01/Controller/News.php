@@ -19,6 +19,7 @@ class News extends DB{
      return $this->view('./view/backend/news.php',$view);
     }
 
+    // 宣告more方法
     function more(){
         if($this->count(['sh'=>1])>5){
             echo "<a href='?do=news' style='float:right'>";
@@ -27,6 +28,7 @@ class News extends DB{
         }
     }
 
+    // 宣告moreNews方法
     function moreNews(){
         $rows=$this->paginate(5,['sh'=>1]);
         $start=$this->links['start']+1;

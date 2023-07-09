@@ -38,6 +38,4 @@ class Image extends DB{
         <?php
         }
     }
-
-
 }
