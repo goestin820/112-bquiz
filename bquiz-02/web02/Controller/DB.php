@@ -59,7 +59,7 @@ class DB{
     //tools
     protected function a2s($array){
         foreach($array as $key => $val){
-            // 假如ker不是id的話，就將key=val資料存入$tmp[]陣列
+            // 假如key不是id的話，就將key=val資料存入$tmp[]陣列
             if($key!='id'){
                 $tmp[]="`$key`='$val'";
             }
@@ -133,21 +133,28 @@ class DB{
         return $rows;
     }
     
-    function links(){
+    function links($target=null){
+        if(is_null($target)){
+            $target=$this->table;
+        }
+
         $html='';
         if($this->links['now']-1 >= 1 ){
             $prev=$this->links['now']-1;
-            $html .= "<a href='?do=$this->table&p=$prev'> &lt; </a>";
+            // $html .= "<a href='?do=$this->table&p=$prev'> &lt; </a>";
+            $html .= "<a href='?do=$target&p=$prev'> &lt; </a>";
         }
 
         for($i=1 ;$i <= $this->links['pages'];$i++){
             $fontsize=($i==$this->links['now'])?"24px":"16px";
-            $html .= "<a href='?do=$this->table&p=$i' style='font-size:$fontsize'> $i </a>";
+            // $html .= "<a href='?do=$this->table&p=$i' style='font-size:$fontsize'> $i </a>";
+            $html .= "<a href='?do=$target&p=$i' style='font-size:$fontsize'> $i </a>";
         }
 
         if($this->links['now']+1 <= $this->links['pages']){
             $next=$this->links['now']+1;
-            $html .= "<a href='?do=$this->table&p=$next'> &gt; </a>";
+            // $html .= "<a href='?do=$this->table&p=$next'> &gt; </a>";
+            $html .= "<a href='?do=$target&p=$next'> &gt; </a>";
         }
 
         return $html;
@@ -161,3 +168,6 @@ class DB{
 // echo "<hr>";
 // echo $db->save(['id'=>1,'viewer'=>50]);
 // echo "<hr>";
+
+// /view/front/que.php
+// $subject = $Que->all(['subject_id' => 0]);
