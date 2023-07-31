@@ -1,0 +1,9 @@
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A01.jpg', '預告片01', '1', '1', '1');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A02.jpg', '預告片02', '2', '1', '2');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A03.jpg', '預告片03', '3', '1', '3');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A04.jpg', '預告片04', '4', '1', '1');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A05.jpg', '預告片05', '5', '1', '2');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A06.jpg', '預告片06', '6', '1', '3');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A07.jpg', '預告片07', '7', '1', '1');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A08.jpg', '預告片08', '8', '1', '2');
+INSERT INTO `posters` (`id`, `img`, `name`, `rank`, `sh`, `ani`) VALUES (NULL, '03A09.jpg', '預告片09', '9', '1', '3');

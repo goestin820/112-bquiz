@@ -82,7 +82,7 @@
                         alert("帳號重複");
                     } else {
                         $.post("./api/reg.php", info, () => {
-                            //alert("註冊完成，歡迎加入")
+                            // alert("註冊完成，歡迎加入")
                             // 將alert函式改為location.reload
                             location.reload();
                         })

@@ -1,4 +1,5 @@
-<?php include_once "../base.php";
+<?php 
+include_once "../base.php";
 
 if(isset($_POST['subject'])){
     $Que->save([

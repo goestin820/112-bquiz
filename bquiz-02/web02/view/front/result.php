@@ -10,6 +10,7 @@ $subject = $Que->subject($_GET['id']);
 <fieldset>
     <legend>目前位置：首頁 > 問卷調查 > <?=$subject['text'];?></legend>
     <h3><?=$subject['text'];?></h3>
+
     <?php 
     foreach($subject['options'] as $idx => $opt){
         $total=($subject['vote']==0)?1:$subject['vote'];

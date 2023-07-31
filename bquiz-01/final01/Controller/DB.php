@@ -41,11 +41,11 @@ class DB{
 
     function save($arg){
         if(isset($arg['id'])){
-            $sql="update $this->table set ";
+            // $sql="update $this->table set ";
+            // $sql=$sql . join(",",$tmp);
+            // $sql=$sql . " where `id`='{$arg['id']}'";
             $tmp=$this->a2s($arg);
-            $sql=$sql . join(",",$tmp);
-            $sql=$sql . " where `id`='{$arg['id']}'";
-
+            $sql="update $this->table set ". join(",",$tmp) . " where `id`='{$arg['id']}'";
         }else{
             $key=array_keys($arg);
             $sql="insert into $this->table (`".join("`,`",$key)."`) value('".join("','",$arg)."')";
@@ -66,6 +66,16 @@ class DB{
 
         return $this->pdo->exec($sql);
     }
+
+    //     protected function sql_one($sql,$arg){
+    //     if(is_array($arg)){
+    //         $tmp=$this->a2s($arg);
+    //         $sql= $sql . " where " . join(" && ",$tmp);
+    //     }else{
+    //         $sql=$sql . " where `id`='$arg'";
+    //     }
+    //     return $sql;
+    // }
 
     function max($col,...$arg){
         return $this->math('max',$col,...$arg);
@@ -134,11 +144,12 @@ class DB{
 
     protected function  a2s($array){
         foreach($array as $key => $value){
+            // 假如key不是id的話，就將key=value資料存入$tmp[]陣列
             if($key!='id'){
                 $tmp[]="`$key`='$value'";
             }
         }
-
+        //回傳$tmp值
         return $tmp;
     }
 
