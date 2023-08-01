@@ -15,7 +15,7 @@ class Viewer extends DB{
             if($chk > 0){
                 $row = $this->find(['date'=>$today]);
                 $row['viewer']++;
-                $this->save($row);
+                $this->save($row); 
                 $_SESSION['viewer']=1;
                 return $row['viewer'];
             }else{
