@@ -46,7 +46,6 @@ class DB{
             $values=join("','",$arg);
             $sql="insert into $this->table (`".$keys."`) values('".$values."')";
         }
-
         return $this->pdo->exec($sql);
     }
 
@@ -62,8 +61,20 @@ class DB{
         return $this->math('sum',$col,...$arg);
     }
 
-    function math(){
-        
+    protected function math($math,$col,...$arg){
+        $sql="select $math($col) from $this->table ";
+        $sql=$this->sql_all($sql,...$arg);
+        return $this->pdo->query($sql)->fetchColumn();
+    }
+    
+    // Tools
+    protected function a2s($array){
+        foreach ($array as $key => $value) {
+            if($key!='id'){
+                $tmp[]="`$key`='$value'";
+            }
+        }
+        return $tmp;
     }
 
     protected function sql_all($sql,...$arg){
@@ -93,59 +104,47 @@ class DB{
         }
         return $sql;
     }
+
+    // view畫面
+    function view($url,$data=null){
+        extract($data);
+        include($url);
+    }
     
+    function paginate($num,$arg=null){
+        $total=$this->count($arg);
+        $pages=ceil($total/$num);
+        $now=$_GET['p']??1;
+        $start=($now-1)*$num;
 
+        $rows=$this->all($arg," limit $start,$num");
 
-    protected function a2s($array){
-        foreach ($array as $key => $value) {
-            if($key!='id'){
-                $tmp[]="`$key`='$value'";
-            }
+        $this->links=[
+                      "total"=>$total,
+                      "pages"=>$pages,
+                      "now"=>$now,
+                      "start"=>$start,
+                      "rows"=>$rows,
+                     ];
+    }
+
+    function links($do=null){
+        $html="";
+        if(is_null($do)){
+            $do=$this->table;
         }
-        return $tmp;
+        if(($this->links['now'] -1 )>=1){
+            $prev=$this->links['now']-1;
+            $html.= "<a href='?do=$do&p=$prev'> &lt; </a>";
+        }
+        for($i=1; $i<=$this->links['pages'];$i++){
+            $html.= "<a href='?do=$do&p=$i'> $i </a>";
+        }
+        if(($this->links['now'] +1 )<=$this->links['pages']){
+            $next=$this->links['now']+1;
+            $html.= "<a href='?do=$do&p=$next'> &gt; </a>";
+        }
+
+        return $html;
     }
-
-    
-function paginate($num,$arg=null){
-    $total=$this->count($arg);
-    $pages=ceil($total/$num);
-    $now=$_GET['p']??1;
-    $start=($now-1)*$num;
-
-    $rows=$this->all($arg," limit $start,$num");
-
-    $this->links=[
-        "total"=>$total,
-        "pages"=>$pages,
-        "now"=>$now,
-        "start"=>$start,
-        "rows"=>$rows,
-    ];
-}
-
-function links($do=null){
-    $html="";
-    if(is_null($do)){
-        $do=$this->table;
-    }
-    if(($this->links['now'] -1 )>=1){
-        $prev=$this->links['now']-1;
-        $html.= "<a href='?do=$do&p=$prev'> &lt; </a>";
-    }
-    for($i=1; $i<=$this->links['pages'];$i++){
-        $html.= "<a href='?do=$do&p=$i'> $i </a>";
-    }
-
-    if(($this->links['now'] +1 )<=$this->links['pages']){
-        $next=$this->links['now']+1;
-        $html.= "<a href='?do=$do&p=$next'> &gt; </a>";
-    }
-
-    return $html;
-}
-
-function view($url,$data=null){
-    extract($data);
-    include($url);
-}
 }

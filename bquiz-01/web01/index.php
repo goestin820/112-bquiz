@@ -15,7 +15,7 @@
 <body>
 	<div id="cover" style="display:none; ">
 		<div id="coverr">
-			<a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;" onclick="cl(&#39;#cover&#39;)">X</a>
+			<a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;" onclick="cl('#cover')">X</a>
 			<div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
 		</div>
 	</div>
@@ -24,7 +24,7 @@
 		<!-- <a title="" href="./home_files/home.htm"> -->
 		<!-- <a title="$Title->find(['sh'=>1])['text']" href="index.php"> -->
 		<a title="<?=$Title->title;?>" href="index.php">
-			<!-- <div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div>標題 -->
+			<!-- <div class="ti" style="background:url('use/'); background-size:cover;"></div>標題 -->
 			<div class="ti" style="background:url('./upload/<?=$Title->img;?>'); background-size:cover;"></div><!--標題-->
 		</a>
 		<div id="ms">
@@ -106,7 +106,7 @@
 
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
-				<!-- <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=admin&#39;)">管理登入</button> -->
+				<!-- <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=admin')">管理登入</button> -->
 				<!-- <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">管理登入</button> -->
 				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo('?do=login')">
 					<?=(isset($_SESSION['login'])?'返回管理':'管理登入');?>
