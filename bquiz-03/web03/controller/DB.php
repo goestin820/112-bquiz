@@ -95,14 +95,20 @@ class DB{
 
     protected function sql_one($sql,$arg){
         if(is_array($arg)){
-            $tmp=$this->a2s($arg[0]);
+            $tmp=$this->a2s($arg);
             // select * from `users` where `name` = 'admin' && `password` = '1234';
             $sql=$sql . " where " .join(" && ",$tmp);
         }else{
             // select * from `users` where `id` = '5' ;
             $sql=$sql . " where `id`='$arg'";
         }
+        // echo $sql;
         return $sql;
+    }
+
+    // 使用任何SQL指令去查詢資料，直接將查詢指令寫入$sql參數
+    function q($sql){
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // view畫面

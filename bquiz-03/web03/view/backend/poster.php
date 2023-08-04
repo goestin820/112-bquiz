@@ -74,13 +74,11 @@
 </form>
 
 <script>
-    $(".sw").on("click", function() {
-        let id = $(this).data('sw').split("-")
-        $.post("./api/sw.php", {
-            table: 'poster',
-            id
-        }, () => {
-            location.reload();
+    $(".sw").on("click",function(){
+    let id=$(this).data('sw').split("-")
+            // 將poster改為Poster
+    $.post("./api/sw.php",{table:'Poster',id},()=>{
+        location.reload();
         })
-    })
+})
 </script>
