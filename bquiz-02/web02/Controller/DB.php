@@ -28,29 +28,34 @@ class DB{
         return $this->pdo->query($sql)->fetchColumn();
     }
 
+    // find(1)['viewer']
     function find($arg){
         $sql="select * from $this->table ";
         $sql=$this->sql_one($sql,$arg);
         // PDO::FETCH_ASSOC 返回以欄位名稱作為索引鍵(key)的陣列(array)
-        // `name`='admin',`pw`='1234'
+        // `acc`='admin',`pw`='1234'
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
+    // del(1)
     function del($arg){
         $sql="delete from $this->table ";
         $sql=$this->sql_one($sql,$arg);
         return $this->pdo->exec($sql);
     }
 
+    
     function save($arg){
         if(isset($arg['id'])){
             $tmp=$this->a2s($arg);
             $sql="update $this->table set ". join(",",$tmp);
             $sql=$sql . " where `id`='{$arg['id']}'";
+            // save(['id'=>1,'viewer'=>50'])
         }else{
             $keys=join("`,`",array_keys($arg));
             $values=join("','",$arg);
             $sql="insert into $this->table (`".$keys."`) values('".$values."')";
+            // save(['date'=>date('Y-m-d'),'viewer'=>100])
         }
         return $this->pdo->exec($sql);
     }
@@ -67,6 +72,7 @@ class DB{
         return $this->math('sum',$col,...$arg);
     }
 
+    // math('max','goods',`type`=>'4' )
     protected function math($math,$col,...$arg){
         $sql="select $math($col) from $this->table ";
         $sql=$this->sql_all($sql,...$arg);
@@ -87,7 +93,7 @@ class DB{
         if(isset($arg[0])){
             if(is_array($arg[0])){
                 $tmp=$this->a2s($arg[0]);
-            // select * from `users` where `name` = 'admin' && `pw` = '1234';
+            // select * from `users` where `acc` = 'admin' && `pw` = '1234';
                 $sql=$sql . " where " .join(" && ",$tmp);
             }else{
                 $sql=$sql . $arg[0];
@@ -102,7 +108,7 @@ class DB{
     protected function sql_one($sql,$arg){
         if(is_array($arg)){
             $tmp=$this->a2s($arg);
-            // select * from `users` where `name` = 'admin' && `pw` = '1234';
+            // select * from `users` where `acc` = 'admin' && `pw` = '1234';
             $sql=$sql . " where " .join(" && ",$tmp);
         }else{
             // select * from `users` where `id` = '3' ;
@@ -157,7 +163,7 @@ class DB{
             $fontsize = ($i==$this->links['now'])?"24px":"16px";
             // $html .= "<a href='?do=$this->table&p=$i' style='font-size:$fontsize'> $i </a>";
             $html .= "<a href='?do=$do&p=$i' style='font-size:$fontsize'> $i </a>";
-        }
+        } 
 
         if($this->links['now']+1 <= $this->links['pages']){
             $next = $this->links['now']+1;
