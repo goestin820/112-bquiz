@@ -1,0 +1,79 @@
+<?php
+
+class DB
+{
+    protected $table;
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db04";
+    protected $pdo;
+    protected $links;
+
+
+    function __construct($table)
+    {
+        $this->table = $table;
+        $this->pdo = new PDO($this->dsn, 'root', '');
+    }
+
+// 
+    function all(...$arg){
+        $sql="select * from $this->table ";
+        $sql=$this->sql_all($sql,...$arg);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function count(...$arg){
+
+    }
+
+    function find($arg){
+
+    }
+
+    function del($arg){
+
+    }
+
+    function save($arg){
+
+    }
+
+
+
+
+    protected function a2s($array)
+    {
+        foreach ($array as $key => $value) {
+            if ($key != 'id') {
+                $tmp[] = "`$key`='$value'";
+            }
+        }
+        return $tmp;
+    }
+
+    protected function sql_all($sql, ...$arg)
+    {
+        if (isset($arg[0])) {
+            if (is_array($arg[0])) {
+                $tmp = $this->a2s($arg[0]);
+                $sql = $sql . " where " . join(" && ", $tmp);
+            } else {
+                $sql = $sql . $sql[0];
+            }
+        }
+        if (isset($arg[1])) {
+            $sql = $sql . $arg[1];
+        }
+        return $sql;
+    }
+
+    protected function sql_one($sql, $arg)
+    {
+        if(is_array($arg)){
+            $tmp=$this->a2s($arg);
+            $sql=$sql . " where" . join(" && ",$tmp);
+        }else{
+            $sql=$sql. "where `id` = '$arg'";
+        }
+        return $sql;
+    }
+}

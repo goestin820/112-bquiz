@@ -12,9 +12,13 @@ class DB{
         $this->pdo=new PDO($this->dsn,'root','');
     }
 
+    // 我們先將 SQL 語法當作字串放到變數
+    // 再來執行 PDO 物件並導向到裡面的query()函數。讓 PDO 進行 SQL 連接並且執行 query()。
+    // 每次 PDO 連線結束後會 return 資料給我們，我們可以用個變數（名稱自訂）存起來。
     function all(...$arg){
         $sql="select * from $this->table ";
         $sql=$this->sql_all($sql,...$arg);
+        // PDO::FETCH_ASSOC 返回以欄位名稱作為索引鍵(key)的陣列(array)
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -27,6 +31,8 @@ class DB{
     function find($arg){
         $sql="select * from $this->table ";
         $sql=$this->sql_one($sql,$arg);
+        // PDO::FETCH_ASSOC 返回以欄位名稱作為索引鍵(key)的陣列(array)
+        // `name`='admin',`pw`='1234'
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -81,7 +87,7 @@ class DB{
         if(isset($arg[0])){
             if(is_array($arg[0])){
                 $tmp=$this->a2s($arg[0]);
-            // select * from `users` where `name` = 'admin' && `password` = '1234';
+            // select * from `users` where `name` = 'admin' && `pw` = '1234';
                 $sql=$sql . " where " .join(" && ",$tmp);
             }else{
                 $sql=$sql . $arg[0];
@@ -96,10 +102,10 @@ class DB{
     protected function sql_one($sql,$arg){
         if(is_array($arg)){
             $tmp=$this->a2s($arg);
-            // select * from `users` where `name` = 'admin' && `password` = '1234';
+            // select * from `users` where `name` = 'admin' && `pw` = '1234';
             $sql=$sql . " where " .join(" && ",$tmp);
         }else{
-            // select * from `users` where `id` = '5' ;
+            // select * from `users` where `id` = '3' ;
             $sql=$sql . " where `id`='$arg'";
         }
         return $sql;
