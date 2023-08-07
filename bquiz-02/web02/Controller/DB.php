@@ -117,7 +117,7 @@ class DB{
         return $sql;
     }
 
-    // view畫面
+    //view("./view/backend/user.php",$data); $data=['rows'=>$this->all(),]
     function view($path,$arg=[]){
         extract($arg);
         include($path);

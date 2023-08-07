@@ -15,4 +15,10 @@ class Poster extends DB{
 
         $this->view("./view/backend/poster.php",$view);
     }
+    
+    function posters(){
+        $rows=$this->all(['sh'=>1]," order by `rank`");
+
+        return $rows;
+    }
 }

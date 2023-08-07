@@ -132,6 +132,7 @@ class DB{
                       "start"=>$start,
                       "rows"=>$rows,
                      ];
+        return $rows;             
     }
 
     function links($do=null){
@@ -150,7 +151,6 @@ class DB{
             $next=$this->links['now']+1;
             $html.= "<a href='?do=$do&p=$next'> &gt; </a>";
         }
-
         return $html;
     }
 }

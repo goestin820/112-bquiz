@@ -9,8 +9,10 @@
   <title>影城</title>
   <!-- 修正以下3行程式碼的CSS和JS連結 -->
   <link rel="stylesheet" href="./css/css.css">
-  <link href="./css/s2.css" rel="stylesheet" type="text/css">
+  <!-- 原本題目的s2.css捨棄不用 -->
+  <!-- <link href="./css/s2.css" rel="stylesheet" type="text/css"> -->
   <script src="./js/jquery-1.9.1.min.js"></script>
+  <!-- <script src="./js/jquery-3.4.1.min.js"></script> -->
 </head>
 
 <body>

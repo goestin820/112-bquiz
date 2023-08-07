@@ -1,6 +1,8 @@
 <?php
 include_once "base.php";
 
+/*撰寫表單的驗證程式,如果驗證成功則建立session來代表登入成功，
+如果失敗則建立一個錯誤訊息變數供 login.php 使用*/
 if(!empty($_POST)){
   if($_POST['acc']=='admin' && $_POST['pw']=="1234"){
     $_SESSION['login']=1;
