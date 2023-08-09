@@ -175,7 +175,6 @@ $(".pos").eq(0).show();
             }
         }
     $(".icon").animate({right:page*80});
-
 })
 </script>
 

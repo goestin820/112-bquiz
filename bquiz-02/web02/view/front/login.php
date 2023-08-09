@@ -49,10 +49,10 @@
             }
         })
     }
-
-    // 將下列程式碼移至js.js統一做判斷
-    // function clean() {
-    //     // $("#acc,#pw,pw2,#email").val();
-    //     $("input[type='text'],input[type='password'],input[type='number'],input[type='radio']").val("");
-    // }
 </script>
+
+<!-- 將下列程式碼移至js.js統一做判斷
+    function clean() {
+        // $("#acc,#pw,pw2,#email").val();
+        $("input[type='text'],input[type='password'],input[type='number'],input[type='radio']").val("");
+    } -->

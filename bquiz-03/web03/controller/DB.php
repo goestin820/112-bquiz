@@ -112,7 +112,8 @@ class DB{
     }
 
     // view畫面
-    function view($url,$data=null){
+    // function view($url,$data=null){
+    function view($url,$data=[]){
         extract($data);
         include($url);
     }

@@ -7,12 +7,12 @@ class User extends DB{
         parent::__construct('users');
     }
 
-    function chk_acc($user){
-        $chk=$this->count(['acc'=>$user['acc']]);
+    function chk_acc($user123){
+        $chk=$this->count(['acc'=>$user123['acc']]);
         if($chk>0){
-            $chk=$this->chk_pw($user);
+            $chk=$this->chk_pw($user123);
             if($chk>0){
-                $_SESSION['user']=$user['acc'];
+                $_SESSION['user']=$user123['acc'];
                 return 1;
             }else{
                 return 2;
@@ -22,8 +22,8 @@ class User extends DB{
         }
     }
 
-    function chk_pw($user){
-        return $this->count($user);
+    function chk_pw($user456){
+        return $this->count($user456);
     }
 
     function backend(){
