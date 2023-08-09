@@ -71,7 +71,8 @@
 							歡迎，<?= $_SESSION['user']; ?>
 							<?php
 							if ($_SESSION['user'] == 'admin') {
-								echo "<button onclick='location.href='backend.php''>";
+								echo "<button onclick='location.href=&#39;backend.php&#39;'>";
+								echo "<button onclick='location.href=&#39;backend.php&#39;'>";
 								echo "管理";
 								echo "</button>";
 							}
