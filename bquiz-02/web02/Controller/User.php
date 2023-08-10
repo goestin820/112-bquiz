@@ -13,12 +13,12 @@ class User extends DB{
             $chk=$this->chk_pw($user123);
             if($chk>0){
                 $_SESSION['user']=$user123['acc'];
-                return 1;
+                return 1;  //帳號正確
             }else{
-                return 2;
+                return 2;  //密碼錯誤
             }
         }else{
-            return 0;
+            return 0; //查無帳號
         }
     }
 
