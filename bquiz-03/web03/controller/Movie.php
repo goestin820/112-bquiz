@@ -55,12 +55,17 @@ class Movie extends DB{
         $today=strtotime(date("Y-m-d"));
         // echo $ondate;
         // echo "-/".$today;
-        $diff=floor(($today-$ondate)/(60*60*24));
+        // $diff=floor(($today-$ondate)/(60*60*24));
+        $diff=3-floor(($today-$ondate)/(60*60*24)); //每部電影可放映3日，計算該電影還可上映幾日
 
         $html="";
-        for($i=0;$i<=$diff;$i++){
+        // for($i=0;$i<=$diff;$i++){
+        for($i=0;$i<$diff;$i++){
             $date=date("Y-m-d",strtotime("+$i days"));
-            $html.="<option value='$date'>$date</option>";
+            // $html.="<option value='$date'>$date</option>";
+            $html.="<option value='$date'>";
+            $html.=date("m月d日 l",strtotime("+$i days"));
+            $html.="</option>";
         }
         return $html;
     }

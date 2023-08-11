@@ -1,0 +1,5 @@
+.theater 540px * 370px
+
+.seats   315px * 340px  
+
+.seat    63px  *  85px

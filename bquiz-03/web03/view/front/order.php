@@ -34,7 +34,12 @@
     <form id="select">
         <div class="select">
             <label for="">電影：</label>
-            <select name="movie" id="movie"></select>
+            <select name="movie" id="movie">
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+            </select>
         </div>
         <div class="select">
             <label for="">日期：</label>
@@ -45,7 +50,8 @@
             <select name="session" id="session"></select>
         </div>
         <div class="ct">
-            <input type="button" value="確定">
+            <!-- <input type="button" value="確定"> -->
+            <input type="button" value="確定" onclick="$('#form,#booking').toggle();getBooking()">
             <input type="reset" value="重置">
         </div>
     </form>
@@ -72,6 +78,7 @@ function getMovies(){
     // $.get("./api/get_movies.php",(movies)=>{
     $.get("./api/get_options.php",{type:'movie'},(movies)=>{
         $("#movie").html(movies);
+
         let id=(new URL(location)).searchParams.get('id')
         if(typeof(id)!='null'){
             $(`#movie option[value='${id}']`).prop('selected',true)
@@ -94,6 +101,25 @@ function getSessions(movie,date){
     $.get("./api/get_options.php",{type:'session',movie,date},(sessions)=>{
         // console.log(sessions);
         $("#session").html(sessions)
+    })
+}
+
+let order={};
+function getBooking(){
+    // order={
+    //     movie:$("#movie").val(),
+    //     date:$("#date").val(),
+    //     session:$("#session").val(),
+    // }
+    
+    // 上述程式碼oredr={....}可改為下列程式碼，更具可讀性
+    order.movie=$("#movie option:selected").text();
+    order.date=$("#date").val();
+    order.session=$("#session").val();
+    // console.log(order);
+
+    $.get("./api/get_booking.php",order,(booking)=>{
+        $("#booking").html(booking)
     })
 }
 

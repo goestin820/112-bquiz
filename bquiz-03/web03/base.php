@@ -11,6 +11,12 @@ function to($url){
     header("location:".$url);
 }
 
+function dd($array){
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+}
+
 $Poster = new Poster;
 $Movie = new Movie;
 $Order = new Order;

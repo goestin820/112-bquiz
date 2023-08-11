@@ -34,5 +34,19 @@ class Order extends DB{
         $seats=$this->sum('qt',['movie'=>$movie,'date'=>$date,'session'=>$this->session[$i]]);
         $html.="<option value='{$this->session[$i]}'>{$this->session[$i]} 剩餘座位 ".(20-$seats)."</option>";
         }
+        return $html;
+    }
+
+    function seats($request){
+        // $_GET['movie'=>XXX,'date'=>OOO,'session'=>ZZZ]
+        // extract($_GET);
+        // $orders=$this->all($_GET);
+        $orders=$this->all($request);
+        $tmp=[];
+        foreach($orders as $order){
+            $seats=unserialize($order['seats']);
+            $tmp=array_merge($tmp,$seats);
+        }
+        return $tmp;
     }
 }
