@@ -69,7 +69,8 @@ body
 }
 .all td
 {
-	min-width:100px;
+	/* min-width:100px; */
+	min-width:50px;
 	padding:10px;
 }
 .tt
