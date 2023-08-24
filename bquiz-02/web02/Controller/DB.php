@@ -12,9 +12,9 @@ class DB{
         $this->pdo=new PDO($this->dsn,'root','');
     }
 
-    // 我們先將 SQL 語法當作字串放到變數
-    // 再來執行 PDO 物件並導向到裡面的query()函數。讓 PDO 進行 SQL 連接並且執行 query()。
-    // 每次 PDO 連線結束後會 return 資料給我們，我們可以用個變數（名稱自訂）存起來。
+    // 先將 SQL 語法當作字串放到變數
+    // 再來執行 PDO 物件並導向到裡面的query()函數，讓 PDO 進行 SQL 連接並執行 query()。
+    // 每次 PDO 連線結束後會 return 資料給我們，可以用變數（自訂名稱）存起來。
     function all(...$arg){
         $sql="select * from $this->table ";
         $sql=$this->sql_all($sql,...$arg);

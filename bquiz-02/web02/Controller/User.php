@@ -7,23 +7,25 @@ class User extends DB{
         parent::__construct('users');
     }
 
-    function chk_acc($user123){
-        $chk=$this->count(['acc'=>$user123['acc']]);
+    function chk_acc($user){
+        $chk=$this->count(['acc'=>$user['acc']]);
         if($chk>0){
-            $chk=$this->chk_pw($user123);
+            $chk=$this->chk_pw($user);
             if($chk>0){
-                $_SESSION['user']=$user123['acc'];
+                //帳密都正確時，在session中紀錄使用者帳號
+                $_SESSION['user']=$user['acc'];
                 return 1;  //帳號正確
             }else{
                 return 2;  //密碼錯誤
             }
         }else{
             return 0; //查無帳號
+            
         }
     }
 
-    function chk_pw($user456){
-        return $this->count($user456);
+    function chk_pw($user){
+        return $this->count($user);
     }
 
     function backend(){

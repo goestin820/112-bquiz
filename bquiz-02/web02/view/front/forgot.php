@@ -4,9 +4,9 @@
 <button onclick="find()">尋找</button>
 
 <script>
-function find(){
-    $.get("./api/find.php",{email:$("#email").val()},(res)=>{
-        $("#res").text(res)
-    })
-}
+    function find(){
+        $.get("./api/find.php",{email:$("#email").val()},(res)=>{
+            $("#res").text(res)
+        })
+    }
 </script>

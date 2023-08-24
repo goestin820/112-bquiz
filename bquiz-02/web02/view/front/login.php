@@ -31,7 +31,7 @@
             pw: $("#pw").val()
         }
         $.post("./api/chk_acc.php", user, (res) => {
-            // console.log(res);
+            console.log(res);
             switch (parseInt(res)) {
                 case 0:
                     alert('查無帳號')
