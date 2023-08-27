@@ -46,12 +46,32 @@ class DB
         if(isset($arg['id'])){
             $tmp=$this->a2s($arg);
             $sql="update $this->table set ".join(",",$tmp);
-            $sql=$sql." where `id` = '{$arg['id']}'";
+            $sql=$sql . " where `id`='{$arg['id']}'";
         }else{
-            $keys=;
-            $values=;
-            $sql="insert into $this->table () values ()";
+            $keys=join("`,`",array_keys($arg));
+            $values=join("','",$arg);
+            $sql="insert into $this->table (`".$keys."`) values ('".$values."')";
+
         }
+        return $this->pdo->exec($sql);
+    }
+
+    function max($col,...$arg){
+        return $this->math('max',$col,...$arg);
+    }
+    
+    function min($col,...$arg){
+        return $this->math('min',$col,...$arg);
+    }
+
+    function sum($col,...$arg){
+        return $this->math('sum',$col,...$arg);
+    }
+
+    protected function math($math,$col,...$arg){
+        $sql="select $math($col) from $this->table";
+        $sql=$this->sql_all($sql,...$arg);
+        return $this->pdo->query($sql)->fetchColumn();
     }
 
 
@@ -97,4 +117,47 @@ class DB
         extract($arg);
         include($path);
     }
+
+    function paginate($num,$arg=null,$arg2=null){
+        $total = $this->count($arg, $arg2);
+        $pages = ceil($total / $num);
+        $now = $_GET['p'] ?? 1;
+        $start = ($now - 1) * $num;
+
+        $rows = $this->all($arg, $arg2 . " limit $start,$num");
+
+        $this->links=[
+            'total'=>$total,
+            'pages'=>$pages,
+            'now'=>$now,
+            'start'=>$start,
+            'num'=>$num,
+            'table'=>$this->table
+        ];
+        return $rows;
+    }
+
+    function links($do=null){
+        if(is_null($do)){
+            $do=$this->table;
+        }
+
+        $html='';
+
+        if($this->links['now']-1 >= 1){
+            $prev=$this->links['now']-1;
+            $html.="<a href='?do=$do&p=$prev'> &lt </a> ";
+        }
+
+        for($i=1 ;$i <= $this->links['pages'];$i++){
+            $fontsize=($i==$this->links['now'])?"24px":"16px";
+            $html.="<a href='?do=$do&p=$i' style='font-size:$fontsize'> &lt </a> ";
+        }
+
+        if($this->links['now']+1 <=$this->links['pages']){
+            $next=links['now']+1;
+            $html.="<a href='?do=$do&p=$next'> &gt </a> ";           
+        }
+    }
 }
+
