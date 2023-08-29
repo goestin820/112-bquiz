@@ -1,4 +1,4 @@
-<!-- 撰寫驗證表單帳號密碼的方法 -->
+
 <?php
 include_once "DB.php";
 
@@ -8,13 +8,13 @@ class User extends DB{
         parent::__construct('users');
     }
 
-    function chk_acc($user){
-        $chk=$this->count(['acc'=>$user['acc']]);
+    function chk_acc($a12345){
+        $chk=$this->count(['acc'=>$_POST['acc']]);
         if($chk>0){
-            $chk=$this->chk_pw($user);
+            $chk=$this->chk_pw($_POST);
             if($chk>0){
                 //帳密都正確時，在session中紀錄使用者帳號
-                $_SESSION['user']=$user['acc'];
+                $_SESSION['user']=$_POST['acc'];
                 return 1;  //帳號正確
             }else{
                 return 2;  //密碼錯誤
@@ -25,8 +25,8 @@ class User extends DB{
         }
     }
 
-    function chk_pw($user){
-        return $this->count($user);
+    function chk_pw($a55688){
+        return $this->count($a55688);
     }
 
     function backend(){
