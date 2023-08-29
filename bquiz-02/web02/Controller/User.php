@@ -1,3 +1,4 @@
+<!-- 撰寫驗證表單帳號密碼的方法 -->
 <?php
 include_once "DB.php";
 

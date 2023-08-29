@@ -58,6 +58,7 @@
 				<a class="blo" href="?do=que">問卷調查</a>
 			</div>
 			<div class="hal" id="main">
+				<!-- 將下列div設定為flexbox，讓跑馬燈及歡迎使用者的文字排在同一列 -->
 				<div style="display:flex">
 					<!-- 新增跑馬燈畫面，並將width寬度設定為75%-->
 					<marquee style="width:75%">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>

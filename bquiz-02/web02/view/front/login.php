@@ -11,6 +11,7 @@
         </tr>
         <tr>
             <td>
+            <!-- 登入和清除功能，都不透過form表單，要自行撰寫js程式來完成 -->
                 <!-- <input type="submit" value="登入"> -->
                 <input type="button" value="登入" onclick="login()">
                 <!-- <input type="reset" value="清除" > -->
@@ -31,7 +32,7 @@
             pw: $("#pw").val()
         }
         $.post("./api/chk_acc.php", user, (res) => {
-            console.log(res);
+            // console.log(res);
             switch (parseInt(res)) {
                 case 0:
                     alert('查無帳號')

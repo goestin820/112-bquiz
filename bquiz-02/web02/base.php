@@ -1,6 +1,6 @@
 <?php
-date_default_timezone_set("Asia/Taipei");
 session_start();
+date_default_timezone_set("Asia/Taipei");
 
 include_once __DIR__ . "/Controller/Viewer.php";
 include_once __DIR__ . "/Controller/User.php";
