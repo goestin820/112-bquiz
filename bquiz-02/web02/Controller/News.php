@@ -7,26 +7,7 @@ class News extends DB{
     {
         parent::__construct('news');
     }
-
-    // function chk_acc($user){
-    //     $chk=$this->count(['acc'=>$user['acc']]);
-    //     if($chk>0){
-    //         $chk=$this->chk_pw($user);
-    //         if($chk>0){
-    //             $_SESSION['user']=$user['acc'];
-    //             return 1;
-    //         }else{
-    //             return 2;
-    //         }
-    //     }else{
-    //         return 0;
-    //     }
-    // }
-
-    // function chk_pw($user){
-    //     return $this->count($user);
-    // }
-    
+   
     function type($type){
         $array=[
                  1=>"健康新知",
@@ -43,6 +24,8 @@ class News extends DB{
                 'links' =>$this->links(),
                 'start'=>($this->links['now']-1)*$this->links['num']+1
               ];
+
+            //   dd($data);
 
         $this->view("./view/backend/news.php",$data);
     }

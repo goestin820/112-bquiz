@@ -49,7 +49,6 @@
 							歡迎，<?= $_SESSION['user']; ?>
 							<?php
 							if ($_SESSION['user'] == 'admin') {
-								// echo "<button onclick='location.href='backend.php''>";
 								echo "<button onclick='location.href=&#39;backend.php&#39;'>";
 								echo "管理";
 								echo "</button>";
@@ -67,17 +66,19 @@
 				</div>
 				<div class="">
 					<?php
+					// 取得網址參數
 					$do = $_GET['do'] ?? 'main';
+					// 將取得的參數首字母轉為大寫
 					$table = ucfirst($do);
+					// 建立頁面路徑
 					$file = "./view/backend/" . $do . ".php";
 					// if (file_exists($file)) {
+					// include $file;
 					if (file_exists($file) && $do != 'main') {
-						// include $file;
-						$$table->backend();
+						$$table->backend(); //執行物件內的backend()方法
 					} else {
 						include "./view/backend/main.php";
 					}
-
 					?>
 				</div>
 			</div>
@@ -89,6 +90,5 @@
 			服務信箱：health@test.labor.gov.tw<img src="./icon/02B02.jpg" width="45">
 		</div>
 	</div>
-
 </body>
 </html>

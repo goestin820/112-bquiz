@@ -1,6 +1,7 @@
 <?php
-session_start();
-unset($_SESSION['user']);
-header("location:../index.php");
+// session_start();
+include_once "../base.php";
 
-?>
+unset($_SESSION['user']);
+
+header("location:../index.php");

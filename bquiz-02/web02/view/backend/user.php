@@ -7,8 +7,12 @@
                 <td>密碼</td>
                 <td>刪除</td>
             </tr>
+                <!-- function backend(){
+                        $data=['rows55688'=>$this->all()];
+                        $this->view("./view/backend/user.php",$data);
+                } -->
             <?php
-            foreach ($rows as $row) {
+            foreach ($rows55688 as $row) {
             ?>
                 <tr>
                     <td><?= $row['acc']; ?></td>
@@ -28,7 +32,7 @@
     </form>
 
     <h1>新增會員</h1>
-    <!-- 以下複製/front/reg.php整段程式碼過來貼上 -->
+    <!-- 以下直接複製/front/reg.php整段程式碼過來貼上 -->
     <fieldset>
         <legend>會員註冊</legend>
         <div style="color:red">

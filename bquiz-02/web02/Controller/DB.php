@@ -116,6 +116,7 @@ class DB
 
     function view($path, $arg = [])
     {
+    //extract()會把陣列中的key值變成變數名稱，value值變成變數值
         extract($arg);
         include($path);
     }
@@ -141,27 +142,26 @@ class DB
         return $rows;
     }
 
-    function links($do = null)
+    function links($page = null)
     {
-        if (is_null($do)) {
-            $do = $this->table;
+        if (is_null($page)) {
+            $page = $this->table;
         }
-
         $html = '';
 
         if ($this->links['now'] - 1 >= 1) {
             $prev = $this->links['now'] - 1;
-            $html .= "<a href='?do=$do&p=$prev'> &lt; </a>";
+            $html .= "<a href='?do=$page&p=$prev'> &lt; </a>";
         }
 
         for ($i = 1; $i <= $this->links['pages']; $i++) {
             $fontsize = ($i == $this->links['now']) ? "24px" : "16px";
-            $html .= "<a href='?do=$do&p=$i' style='font-size:$fontsize'> $i </a>";
+            $html .= "<a href='?do=$page&p=$i' style='font-size:$fontsize'> $i </a>";
         }
 
         if ($this->links['now'] + 1 <= $this->links['pages']) {
             $next = $this->links['now'] + 1;
-            $html .= "<a href='?do=$do&p=$next'> &gt; </a>";
+            $html .= "<a href='?do=$page&p=$next'> &gt; </a>";
         }
         return $html;
     }

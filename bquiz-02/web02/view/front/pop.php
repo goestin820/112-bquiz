@@ -55,7 +55,6 @@
         }
         ?>
     </table>
-    <!-- <div><= $News->links(); ?></div> -->
     <div><?= $News->links("pop"); ?></div>
 </fieldset>
 
@@ -87,5 +86,5 @@
             // 用reload重新載入畫面
             location.reload()
         })
-        })
+    })
 </script>

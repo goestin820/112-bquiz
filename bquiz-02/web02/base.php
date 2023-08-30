@@ -12,6 +12,12 @@ function to($url){
     header("location:".$url);
 }
 
+function dd($array){
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+}
+
 $Viewer=new Viewer;
 $User=new User;
 $News=new News;

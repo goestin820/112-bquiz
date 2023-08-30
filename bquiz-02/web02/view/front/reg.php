@@ -47,17 +47,17 @@
         } else if (info.pw != info.pw2) {
             alert("密碼錯誤");
         } else {
-            //假如上述2個判斷式都不符合的話，就將帳號acc送去後端chk_acc.php進行檢查
-            $.post("./api/chk_acc.php", {
-                acc: info.acc
-            }, (res) => {
+            //假如上述2個判斷式都不符合的話，就將acc帳號單獨送到後端chk_acc.php進行檢查
+            $.post("./api/chk_acc.php", {acc: info.acc}, (res) => {
+                console.log(res);
                 //假如回傳的結果不是0,表示此帳號在資料表中已存在
                 if (parseInt(res) !== 0) {
                     alert("帳號重複");
                 } else {
-                    //如果回傳的結果是0,表示資料表中沒有這個帳號,將整個info表單資料送到後端reg.php中進行更新
-                    $.post("./api/reg.php", info, () => {
-                        alert("註冊完成，歡迎加入")
+                    //假如回傳的結果是0,表示資料表中無此帳號,就將整個info表單資料送到後端reg.php中進行更新
+                    $.post("./api/reg.php", info, (res) => {
+                        console.log(res);
+                        alert("註冊完成，歡迎加入");
                     })
                 }
             })

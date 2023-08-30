@@ -1,4 +1,3 @@
-
 <?php
 include_once "DB.php";
 
@@ -8,9 +7,10 @@ class User extends DB{
         parent::__construct('users');
     }
 
-    function chk_acc($a12345){
+    function chk_acc(){
         $chk=$this->count(['acc'=>$_POST['acc']]);
         if($chk>0){
+            //帳號正確時，呼叫chk_pw()方法，驗證帳號密碼是否都正確
             $chk=$this->chk_pw($_POST);
             if($chk>0){
                 //帳密都正確時，在session中紀錄使用者帳號
@@ -21,19 +21,21 @@ class User extends DB{
             }
         }else{
             return 0; //查無帳號
-            
         }
     }
 
-    function chk_pw($a55688){
-        return $this->count($a55688);
+    // 驗證帳號密碼的方法
+    function chk_pw(){
+        return $this->count($_POST);
     }
 
     function backend(){
         $data=[
-            'rows'=>$this->all(),
+            'rows55688'=>$this->all(),
         ];
+        dd($data);
 
+    //extract()會把陣列中的key值直接變成變數名稱，value值則變成變數值
         $this->view("./view/backend/user.php",$data);
     }
 }
