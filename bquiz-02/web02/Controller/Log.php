@@ -6,7 +6,8 @@ class Log extends DB{
     {
         parent::__construct('log');
     }
-      
+    
+    //($news)為有按過讚的news id，從news.php傳送過來
     function showGoods($news){
         $chk=$this->count(['user'=>$_SESSION['user'],'news'=>$news]);
         

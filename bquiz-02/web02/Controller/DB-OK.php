@@ -56,7 +56,7 @@ class DB{
             $sql="update $this->table set ". join(",",$tmp);
             $sql=$sql . " where `id`='{$arg['id']}'"; //加上id值做為條件
             // save(['id'=>2,'pw'=>7890','email'=>test1@labor.gov.tw])
-            // update `users` set (`pw`,`email`) values ('7890','test1@labor.gov.tw')
+            // update `users` set (`pw`,`email`) values ('7890','test1@labor.gov.tw') where `id`='2';
         }else{
              //利用php內建的array_keys()函式把陣列的key值獨立成為一個陣列
             $keys=join("`,`",array_keys($arg));
