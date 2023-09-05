@@ -166,3 +166,9 @@ class DB
         return $html;
     }
 }
+
+// $db= new DB('test');
+// $db->save(['text'=>'考試加油!!']);
+// $db->save(['id'=>2,'text'=>'結訓順利!!']);
+// echo $db->find(3)['text'];
+// $db->del(2);
