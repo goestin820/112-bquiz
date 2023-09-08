@@ -3,7 +3,7 @@
 class DB
 {
     protected $table;
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db04";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=db02";
     protected $pdo;
     protected $links;
 
@@ -172,3 +172,22 @@ class DB
 // $db->save(['id'=>2,'text'=>'結訓順利!!']);
 // echo $db->find(3)['text'];
 // $db->del(2);
+
+// $DB = new DB('test');
+// if (!isset(($DB->find(1))['id'])) {
+//     $DB->save(['text' => 1]);
+//     $DB->save(['text' => 2]);
+//     $DB->save(['text' => 3]);
+//     $DB->save(['id' => 1, 'text' => 2]);
+//     $DB->del(3);
+//     $DB->save(['text' => 4]);
+// }
+// echo "<pre>";
+// print_r($DB->all());
+// echo "</pre>";
+// $rows = $DB->paginate(1);
+// $start = $DB->test()['start'];
+// foreach ($rows as $key => $val) {
+//     echo "<br>" . $key +  $start + 1 . "=>" . $val['text'] . "<br>";
+// };
+// echo $DB->links('db');

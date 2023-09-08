@@ -24,6 +24,7 @@ class DB{
     }
 
     //因為這類方法大多是只會回傳一個值,所以使用fetchColumn()的方式來回傳
+    // $chk = $this->count(['date'=>$today]);
     function count(...$arg){
         $sql="select count(*) from $this->table ";
         $sql=$this->sql_all($sql,...$arg);
@@ -31,6 +32,7 @@ class DB{
     }
 
     // find(1)['viewer']
+    // $row = $this->find(['date'=>$today]);
     function find($arg){
         $sql="select * from $this->table ";
         $sql=$this->sql_one($sql,$arg);
@@ -63,6 +65,7 @@ class DB{
             $values=join("','",$arg); //join預設為結合$arg陣列的value值
             
             $sql="insert into $this->table (`".$keys."`) values ('".$values."')";
+            // $this->save(['date'=>$today,'viewer'=>1]);
             // save(['date'=>date('Y-m-d'),'viewer'=>100])
             //insert into `viewer` (`date`,`viewer`) values ('2023-08-29','100')
         }
@@ -154,10 +157,10 @@ class DB{
         $total = $this->count($arg,$arg2); //資料總筆數
         $pages = ceil($total/$num);  //資料總頁數
         $now = $_GET['p']??1; //根據網址是否帶有p參數來決定目前的頁碼
-        $start = ($now-1)*$num; //每頁開頭第一筆的索引值
+        $start = ($now-1)*$num; //每頁開頭第一筆的key索引值
 
         //利用all方法來取得資料，最後的參數為sql的limit語法
-        // $rows=$this->all($arg," limit $start,$num");
+        // $sql="select * from $this->table where $arg && $arg2";
         $rows = $this->all($arg,$arg2 . " limit $start,$num");
 
          //取得所有資料後，將分頁資訊寫入DB類別的links屬性，方便換頁連結使用

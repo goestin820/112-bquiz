@@ -8,11 +8,11 @@
                 <td>刪除</td>
             </tr>
                 <!-- function backend(){
-                        $data=['rows55688'=>$this->all()];
+                        $data=['rows'=>$this->all()];
                         $this->view("./view/backend/user.php",$data);
                 } -->
             <?php
-            foreach ($rows55688 as $row) {
+            foreach ($rows as $row) {
             ?>
                 <tr>
                     <td><?= $row['acc']; ?></td>

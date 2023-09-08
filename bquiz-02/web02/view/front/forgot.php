@@ -7,6 +7,7 @@
 <script>
     function find(){
         $.get("./api/find.php",{email:$("#email").val()},(res)=>{
+            // $("#result").html(res);
             $("#result").text(res);
         })
     }

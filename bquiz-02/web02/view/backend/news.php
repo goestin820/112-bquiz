@@ -25,7 +25,9 @@
         ?>
     </table>
 
-    <div class="ct"><?= $links; ?></div>
+    <!-- <div class="ct"><= $links; ?></div> -->
+    <div class="ct"><?= $this->links(); ?></div>
+
     <div class="ct">
         <input type="submit" value="確定修改">
     </div>

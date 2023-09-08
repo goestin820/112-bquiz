@@ -31,7 +31,7 @@ class User extends DB{
 
     function backend(){
         $data=[
-            'rows55688'=>$this->all(),
+            'rows'=>$this->all(),
         ];
         dd($data);
 

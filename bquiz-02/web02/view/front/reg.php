@@ -25,7 +25,7 @@
                 <button onclick="reg()">註冊</button>
                 <button onclick="clean()">清除</button>
             </td>
-            <td></td>
+            <!-- <td></td> -->
         </tr>
     </table>
 </fieldset>

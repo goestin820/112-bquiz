@@ -1,6 +1,6 @@
 <?php 
 include_once "../base.php";
-dd($_POST);
+// dd($_POST);
 // exit();
 
 foreach($_POST['id'] as $id){
@@ -11,8 +11,8 @@ foreach($_POST['id'] as $id){
         $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
         $News->save($row);
     }
-    dd($id);
+    // dd($id);
     // dd($row);
 }
 
-// to("../backend.php?do=news");
+to("../backend.php?do=news");

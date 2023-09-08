@@ -49,7 +49,8 @@
 							歡迎，<?= $_SESSION['user']; ?>
 							<?php
 							if ($_SESSION['user'] == 'admin') {
-								echo "<button onclick='location.href=&#39;backend.php&#39;'>";
+								// echo "<button onclick='location.href=&#39;backend.php&#39;'>";
+								echo "<button onclick=location.href='backend.php'>";
 								echo "管理";
 								echo "</button>";
 							}
@@ -73,9 +74,9 @@
 					// 建立頁面路徑
 					$file = "./view/backend/" . $do . ".php";
 					// if (file_exists($file)) {
-					// include $file;
-					if (file_exists($file) && $do != 'main') {
-						$$table->backend(); //執行物件內的backend()方法
+						if (file_exists($file) && $do != 'main') {
+							$$table->backend(); //執行物件內的backend()方法
+							// include $file;
 					} else {
 						include "./view/backend/main.php";
 					}
